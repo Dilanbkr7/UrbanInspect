@@ -1,0 +1,12 @@
+@use '../styles/common';
+.cabecera{padding:23px 19px 26px;color:white;background:linear-gradient(135deg,#103d70,#096bc8);border-radius:20px;margin-bottom:17px}
+.cabecera .mini{font-size:11px;font-weight:900;letter-spacing:1px;color:#cde5ff}
+.cabecera h1{font-size:26px;font-weight:900;margin:11px 0 6px;letter-spacing:-.5px}
+.cabecera p{font-size:13px;line-height:1.5;color:#d9ebff;margin:0 0 22px}
+.crear{display:inline-block;background:white;color:#155b9f;text-decoration:none;border-radius:10px;padding:12px 14px;font-size:14px;font-weight:900}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+.kpis div{background:#f0f5fa;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:4px}
+.kpis b{font-size:26px;color:#154e83}.kpis span{font-size:12px;color:#54728a}
+.indicador{display:flex;justify-content:space-between;align-items:center;color:#355e80;font-weight:750;font-size:13px}
+.indicador strong{font-size:23px;color:#174e82}.titulo-fila{justify-content:space-between}
+.titulo-fila h2{margin:12px 0;color:#1b3955;font-size:18px}.titulo-fila a{font-size:13px;color:#0863be;text-decoration:none;font-weight:800;text-align:right}

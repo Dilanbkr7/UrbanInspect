@@ -1,0 +1,59 @@
+:host{--ion-background-color:#f5f8fc;--ion-color-primary:#1165bf}
+ion-toolbar{--background:#ffffff;--color:#152f4b;--border-color:#e3e9f2}
+ion-content{--background:#f5f8fc}
+.contenedor{max-width:740px;margin:0 auto;padding:18px 16px 34px}
+.titulo{color:#152f4b;font-size:24px;letter-spacing:-.6px;font-weight:850;margin:0 0 6px}
+.subtitulo{color:#5e7084;font-size:13px;line-height:1.5;margin:0 0 18px}
+.panel{background:#fff;padding:18px;border:1px solid #e2e9f3;border-radius:16px;margin:0 0 16px;box-shadow:0 2px 12px #143a6906}
+.panel h2{font-size:15px;margin:0 0 14px;color:#1a3754;font-weight:800}
+.ayuda{color:#64748b;font-size:12px;line-height:1.5}
+.error{background:#fff0ed;border:1px solid #ffc8be;color:#a42c20;border-radius:10px;padding:12px;font-size:13px;line-height:1.5;margin:12px 0}
+.aviso{background:#fff6df;border:1px solid #f4d78d;color:#765200;border-radius:10px;padding:12px;font-size:13px;line-height:1.5;margin:12px 0}
+.exito{background:#e7f8ef;border:1px solid #b9e8cd;color:#17653d;border-radius:10px;padding:12px;font-size:13px;line-height:1.5;margin:12px 0}
+.vacio{text-align:center;color:#64748b;padding:26px;background:white;border-radius:16px;line-height:1.6}
+.boton{border:0;border-radius:10px;background:#0969c9;color:#fff;font-weight:800;font-size:14px;padding:13px 16px;cursor:pointer}
+.boton:disabled{opacity:.5}.boton.secundario{background:#e9f2fb;color:#1458a1}.boton.peligro{background:#fee9e9;color:#9e2424}
+.fila{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.fila>*{flex:1}
+.campo{display:block;color:#254764;font-size:13px;font-weight:800;margin:14px 0 4px}
+ion-input,ion-textarea,ion-select{--background:#f8fafc;--padding-start:12px;--padding-end:12px;border:1px solid #d6e0eb;border-radius:10px;min-height:44px}
+ion-textarea{min-height:90px}
+
+
+/* Colores de texto y formularios */
+
+:host {
+  --ion-text-color: #193e5b;
+}
+
+.panel {
+  color: #193e5b;
+}
+
+ion-input,
+ion-textarea,
+ion-select {
+  color: #193e5b;
+  --color: #193e5b;
+  --background: #f8fafc;
+  --placeholder-color: #65778a;
+  --placeholder-opacity: 1;
+}
+
+/* Texto seleccionado y texto de ayuda */
+ion-select::part(text) {
+  color: #193e5b;
+}
+
+ion-select::part(placeholder) {
+  color: #65778a;
+}
+
+ion-select::part(icon) {
+  color: #365a78;
+}
+
+/* Campos de escritura */
+ion-input::part(native),
+ion-textarea::part(native) {
+  color: #193e5b;
+}

@@ -1,0 +1,5 @@
+@use '../styles/common';
+.referencia{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#365a78;font-weight:800}
+.estado{border-radius:20px;padding:6px 10px;font-size:12px;background:#ecf3fa}
+.estado.resuelta{background:#d5f3e1;color:#14683f}.estado.pendiente{background:#fff1d2;color:#986700}.estado.en_proceso{background:#dceaff;color:#0b56a1}
+dl{display:grid;grid-template-columns:1fr 2fr;gap:12px;font-size:13px}dt{color:#60798e;font-weight:800}dd{color:#193e5b;margin:0;overflow-wrap:anywhere}hr{border:0;border-top:1px solid #e5eaf0;margin:17px 0}.foto{width:100%;border-radius:10px;max-height:400px;object-fit:contain;background:#f3f6f9}

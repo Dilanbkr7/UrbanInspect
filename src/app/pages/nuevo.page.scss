@@ -1,0 +1,10 @@
+@use '../styles/common';
+.previsualizacion{margin:16px 0;background:#f4f8fc;border-radius:12px;padding:10px;text-align:center}
+.previsualizacion img{display:block;max-height:300px;width:100%;object-fit:contain;border-radius:8px}
+.ausencia{background:#f5f8fc;border:1px dashed #b9c9d8;padding:24px 10px;text-align:center;color:#8493a2;font-size:13px;margin-top:12px;border-radius:12px}
+.resultado-clima{border-top:1px solid #e6ebf2;margin-top:16px;padding-top:8px}
+.resultado-clima h3{color:#174a78;font-size:18px;margin:10px 0}
+.medidas{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.medidas>div{background:#edf6ff;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:6px}
+.medidas strong{color:#134d80;font-size:23px}.medidas span{color:#5a748a;font-size:11px}
+.boton-final{width:100%;margin-top:12px}

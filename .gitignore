@@ -74,3 +74,26 @@ Thumbs.db
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Dependencias
+node_modules/
+
+# Compilaciones
+www/
+dist/
+.angular/
+android/.gradle/
+android/build/
+android/app/build/
+
+# Configuracion local
+android/local.properties
+.env
+.env.*
+
+# Archivos temporales
+*.log
+*.zip
+*.apk
+respaldo_src_inicial/
+respaldo_antes_ionic9/
