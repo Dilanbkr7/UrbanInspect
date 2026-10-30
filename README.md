@@ -1,14 +1,15 @@
 # UrbanInspect
 
-**Registro y seguimiento de incidencias urbanas — Práctica de Desarrollo de Aplicaciones Móviles (ESFOT)**
+**Prueba 1 de Aplicaciones Móviles (ESFOT)**  
+**Registro y seguimiento de incidencias urbanas**
 
 UrbanInspect es una aplicación para Android enfocada en reportar problemas de infraestructura urbana: baches, luminarias dañadas, señalización deteriorada, alcantarillas obstruidas y daños en parques. Permite registrar la ubicación, adjuntar evidencia fotográfica, consultar el clima y dar seguimiento a los casos.
 
-El proyecto se realizó con **Ionic, Angular, TypeScript y Capacitor**. Para las pruebas utilicé **MockAPI** como servicio REST, **Cloudinary** para guardar fotografías y **Open-Meteo** para las condiciones meteorológicas. Los registros marcados para seguimiento y los formularios incompletos se conservan localmente en el dispositivo.
+El proyecto está desarrollado con **Ionic, Angular, TypeScript y Capacitor**. Utiliza **MockAPI** para las operaciones REST, **Cloudinary** para almacenar fotografías y **Open-Meteo** para las condiciones meteorológicas. Los registros marcados para seguimiento y los formularios incompletos se conservan localmente en el dispositivo.
 
 ## 1. Capturas de la aplicación Android
 
-Estas evidencias corresponden a la aplicación ejecutada en un teléfono Android. Los códigos `DEMO-...` son registros de prueba cargados previamente en MockAPI; los códigos `UI-...` corresponden a registros creados desde la aplicación.
+Las capturas corresponden a pruebas realizadas en un teléfono Android. Los códigos `DEMO-...` identifican registros de prueba cargados en MockAPI para verificar el listado y sus estados; los códigos `UI-...` corresponden a registros creados desde la aplicación.
 
 ### Instalación y registro
 
@@ -58,7 +59,7 @@ Estas evidencias corresponden a la aplicación ejecutada en un teléfono Android
 | Capacitor Preferences | Seguimientos y datos del borrador en almacenamiento local |
 | Capacitor Filesystem | Conservación local de la fotografía de un borrador |
 
-Se utilizó un servicio REST de pruebas en lugar de implementar un servidor propio para concentrar la práctica en las funciones móviles, la comunicación HTTP y la persistencia local. **MockAPI no representa un sistema de producción con autenticación.**
+Para la **Prueba 1 de Aplicaciones Móviles**, se utilizó MockAPI como servicio REST, con el propósito de trabajar la comunicación HTTP, la paginación y las actualizaciones remotas sin desarrollar un backend propio. El servicio no incorpora un sistema de autenticación de usuarios configurado en esta aplicación.
 
 ## 4. Requisitos para ejecutar
 
@@ -77,7 +78,7 @@ npm install -g @ionic/cli
 ionic serve
 ```
 
-La aplicación se abre normalmente en `http://localhost:8100`. Las pruebas de GPS y cámara nativos deben hacerse en Android; en el navegador se puede seleccionar una fotografía del equipo.
+La aplicación se abre normalmente en `http://localhost:8100`. Las funciones de GPS y cámara nativos se comprueban en Android; en el navegador se puede seleccionar una fotografía del equipo.
 
 ### Configurar los servicios
 
@@ -92,22 +93,22 @@ export const CONFIG = {
 } as const;
 ```
 
-El ejemplo anterior usa marcadores de posición. Hay que reemplazarlos por los valores del proyecto de prueba; no se añade `/incidencias` al final de `mockApiBaseUrl`, porque el servicio lo incorpora.
+El bloque anterior ilustra la estructura de la configuración. Si se crea un nuevo entorno, se reemplazan los valores por los de ese entorno. No se añade `/incidencias` al final de `mockApiBaseUrl`, porque el servicio lo incorpora.
 
 **MockAPI:** crear el recurso `incidencias` con los campos `codigo`, `tipo`, `descripcion`, `direccion`, `sector`, `prioridad`, `fecha`, `estado`, `fotoUrl`, `latitud`, `longitud`, `observacion` y `actualizadoEn`. El campo `id` lo genera el servicio. Para la paginación se utilizan `page` y `limit`.
 
-**Cloudinary:** configurar un preset `urbaninspect_unsigned` de tipo *Unsigned* para las fotografías de la práctica. No colocar API Secret ni credenciales privadas en el frontend o el repositorio. **Open-Meteo** se consulta sin una clave privada en este proyecto.
+**Cloudinary:** configurar un preset `urbaninspect_unsigned` de tipo *Unsigned* para la carga de fotografías. No colocar API Secret ni credenciales privadas en el frontend o el repositorio. **Open-Meteo** se consulta sin una clave privada en esta implementación.
 
 ### Datos de prueba y comprobación
 
-Los scripts disponibles en `scripts/` permiten insertar 18 incidencias y comprobar la respuesta del servicio:
+Los scripts disponibles en `scripts/` permiten insertar 18 incidencias de prueba y comprobar la respuesta del servicio:
 
 ```cmd
 scripts\INSERTAR_18_DATOS.cmd
 scripts\COMPROBAR_API.cmd
 ```
 
-El primer comando agrega registros y **no debe ejecutarse varias veces** sobre el mismo recurso si no se desean duplicados. Los datos `DEMO-...` son ficticios y se usan para probar estados, tipos, prioridades y paginación. No están escritos directamente en las pantallas de Angular.
+El primer comando agrega registros y **no debe ejecutarse varias veces** sobre el mismo recurso si no se desean duplicados. Los datos `DEMO-...` son ficticios y se utilizan para evaluar estados, tipos, prioridades y paginación. No están escritos directamente en las pantallas de Angular.
 
 ## 5. Ejecutar en Android
 
@@ -119,7 +120,7 @@ npx cap sync android
 npx cap open android
 ```
 
-Otra opción es crear un APK de depuración desde CMD:
+También se puede crear un APK de depuración desde CMD:
 
 ```cmd
 cd android
@@ -132,7 +133,7 @@ Archivo generado:
 android/app/build/outputs/apk/debug/app-debug.apk
 ```
 
-El nombre del APK puede cambiarse al copiar el archivo para la entrega; eso no modifica el identificador de la aplicación. Un APK de depuración sirve para demostración o pruebas, no equivale a una versión de distribución publicada.
+El nombre del APK puede cambiarse al copiar el archivo para la entrega; eso no modifica el identificador de la aplicación. Un APK de depuración permite instalar y evaluar la aplicación durante la Prueba 1; para distribuirla en una tienda se requiere generar y firmar una versión de publicación.
 
 ## 6. Organización del proyecto
 
@@ -160,8 +161,8 @@ src/
       tarjeta-incidencia.component.ts  Tarjetas de incidencias
 android/                     Proyecto Android/Gradle
 assets/                      Recursos fuente del icono y splash
-scripts/                     Herramientas de verificación y datos de práctica
-docs/capturas/               Evidencias de prueba
+scripts/                     Herramientas de verificación y datos de prueba
+docs/capturas/               Capturas de las pruebas realizadas
 ```
 
 Las rutas de la interfaz son `/inicio`, `/incidencias`, `/nuevo`, `/seguimiento` y `/detalle/:id`.
@@ -178,6 +179,8 @@ La carga de cinco en cinco puede revisarse en la pestaña de red del navegador (
 
 ## 8. Alcance y observaciones
 
-Este es un proyecto académico de demostración. El servicio de datos es MockAPI y las fotografías se alojan en Cloudinary mediante un preset de práctica. Para un sistema real harían falta autenticación, permisos por usuario, control de acceso al servicio y validaciones del lado del servidor. Los registros demostrativos no deben interpretarse como reportes oficiales.
+UrbanInspect fue desarrollado para la **Prueba 1 de Aplicaciones Móviles (ESFOT)**. La aplicación permite registrar, consultar y actualizar incidencias urbanas desde Android, adjuntar fotografías, obtener coordenadas, consultar el clima y mantener seguimientos y borradores locales.
 
-Las funciones que dependen de permisos del sistema operativo —especialmente cámara y GPS— se prueban en Android. La consulta meteorológica depende de disponibilidad de internet y de los datos que devuelva Open-Meteo. La precipitación mostrada corresponde al período horario consultado y no necesariamente a la lluvia instantánea.
+Las incidencias se almacenan en MockAPI y las fotografías se guardan en Cloudinary. Los registros `DEMO-...` corresponden a datos ficticios incorporados para comprobar paginación, prioridades y cambios de estado; no son reportes oficiales. El acceso al servicio REST está planteado para el entorno de evaluación, sin autenticación ni permisos diferenciados por usuario.
+
+El uso de la cámara y del GPS depende de los permisos otorgados en Android. Las consultas a MockAPI, Cloudinary y Open-Meteo requieren conexión a internet y disponibilidad de estos servicios. La precipitación mostrada corresponde a la última hora consultada, por lo que puede diferir de las condiciones meteorológicas instantáneas.
