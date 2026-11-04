@@ -1,6 +1,5 @@
 # UrbanInspect
 
-**Prueba 1 de Aplicaciones Móviles (ESFOT)**  
 **Registro y seguimiento de incidencias urbanas**
 
 UrbanInspect es una aplicación para Android enfocada en reportar problemas de infraestructura urbana: baches, luminarias dañadas, señalización deteriorada, alcantarillas obstruidas y daños en parques. Permite registrar la ubicación, adjuntar evidencia fotográfica, consultar el clima y dar seguimiento a los casos.
@@ -9,31 +8,31 @@ El proyecto está desarrollado con **Ionic, Angular, TypeScript y Capacitor**. U
 
 ## 1. Capturas de la aplicación Android
 
-Las capturas corresponden a pruebas realizadas en un teléfono Android. Los códigos `DEMO-...` identifican registros de prueba cargados en MockAPI para verificar el listado y sus estados; los códigos `UI-...` corresponden a registros creados desde la aplicación.
+Las capturas corresponden a las pantallas principales de UrbanInspect y permiten revisar el flujo de registro, consulta y seguimiento de incidencias.
 
 ### Instalación y registro
 
 | Pantalla de inicio | Formulario de incidencia | Fotografía tomada desde Android |
 |:---:|:---:|:---:|
-| <img src="docs/capturas/01_splash.jpg" width="210" alt="Splash del Panecillo"> | <img src="docs/capturas/02_formulario.jpg" width="210" alt="Formulario de registro"> | <img src="docs/capturas/03_fotografia.jpg" width="210" alt="Previsualización de la fotografía"> |
+| <img src="docs/capturas/01_splash.jpg" width="210" alt="Pantalla de inicio"> | <img src="docs/capturas/02_formulario.jpg" width="210" alt="Formulario de registro"> | <img src="docs/capturas/03_fotografia.jpg" width="210" alt="Previsualización de la fotografía"> |
 
 ### Consulta meteorológica y registro remoto
 
 | Condiciones meteorológicas | Confirmación de registro | Incidencia en listado |
 |:---:|:---:|:---:|
-| <img src="docs/capturas/04_clima.jpg" width="210" alt="Temperatura y precipitación de Open-Meteo"> | <img src="docs/capturas/05_guardado.jpg" width="210" alt="Notificación de incidencia registrada"> | <img src="docs/capturas/06_listado.jpg" width="210" alt="Listado de incidencias con el nuevo registro"> |
+| <img src="docs/capturas/04_clima.jpg" width="210" alt="Temperatura y precipitación de Open-Meteo"> | <img src="docs/capturas/05_guardado.jpg" width="210" alt="Confirmación de incidencia registrada"> | <img src="docs/capturas/06_listado.jpg" width="210" alt="Listado de incidencias"> |
 
 ### Detalle, seguimiento y recuperación
 
 | Actualización de estado | Seguimiento local | Borrador recuperable |
 |:---:|:---:|:---:|
-| <img src="docs/capturas/07_detalle_estado.jpg" width="210" alt="Actualización remota del estado"> | <img src="docs/capturas/08_seguimiento.jpg" width="210" alt="Incidencias marcadas para seguimiento"> | <img src="docs/capturas/09_borrador.jpg" width="210" alt="Aviso de borrador local"> |
+| <img src="docs/capturas/07_detalle_estado.jpg" width="210" alt="Actualización del estado"> | <img src="docs/capturas/08_seguimiento.jpg" width="210" alt="Incidencias marcadas para seguimiento"> | <img src="docs/capturas/09_borrador.jpg" width="210" alt="Aviso de borrador local"> |
 
 ### Validaciones y evidencia en el listado
 
 | Prioridad alta | Ubicación no ingresada | Imagen del registro |
 |:---:|:---:|:---:|
-| <img src="docs/capturas/10_prioridad_alta.jpg" width="210" alt="Aviso de fotografía para prioridad alta"> | <img src="docs/capturas/11_sin_ubicacion.jpg" width="210" alt="Aviso de clima sin coordenadas"> | <img src="docs/capturas/12_foto_en_listado.jpg" width="210" alt="Fotografía persistente en el listado"> |
+| <img src="docs/capturas/10_prioridad_alta.jpg" width="210" alt="Aviso de fotografía para prioridad alta"> | <img src="docs/capturas/11_sin_ubicacion.jpg" width="210" alt="Aviso de clima sin coordenadas"> | <img src="docs/capturas/12_foto_en_listado.jpg" width="210" alt="Fotografía en el listado"> |
 
 ## 2. Funciones principales
 
@@ -59,7 +58,7 @@ Las capturas corresponden a pruebas realizadas en un teléfono Android. Los cód
 | Capacitor Preferences | Seguimientos y datos del borrador en almacenamiento local |
 | Capacitor Filesystem | Conservación local de la fotografía de un borrador |
 
-Para la **Prueba 1 de Aplicaciones Móviles**, se utilizó MockAPI como servicio REST, con el propósito de trabajar la comunicación HTTP, la paginación y las actualizaciones remotas sin desarrollar un backend propio. El servicio no incorpora un sistema de autenticación de usuarios configurado en esta aplicación.
+Para la aplicación se utiliza MockAPI como servicio REST, con el propósito de gestionar la comunicación HTTP, la paginación y las actualizaciones remotas sin desarrollar un backend propio. El servicio no incorpora un sistema de autenticación de usuarios configurado en esta aplicación.
 
 ## 4. Requisitos para ejecutar
 
@@ -99,16 +98,16 @@ El bloque anterior ilustra la estructura de la configuración. Si se crea un nue
 
 **Cloudinary:** configurar un preset `urbaninspect_unsigned` de tipo *Unsigned* para la carga de fotografías. No colocar API Secret ni credenciales privadas en el frontend o el repositorio. **Open-Meteo** se consulta sin una clave privada en esta implementación.
 
-### Datos de prueba y comprobación
+### Datos y comprobación de servicios
 
-Los scripts disponibles en `scripts/` permiten insertar 18 incidencias de prueba y comprobar la respuesta del servicio:
+Los scripts disponibles en `scripts/` permiten insertar registros y comprobar la respuesta del servicio:
 
 ```cmd
 scripts\INSERTAR_18_DATOS.cmd
 scripts\COMPROBAR_API.cmd
 ```
 
-El primer comando agrega registros y **no debe ejecutarse varias veces** sobre el mismo recurso si no se desean duplicados. Los datos `DEMO-...` son ficticios y se utilizan para evaluar estados, tipos, prioridades y paginación. No están escritos directamente en las pantallas de Angular.
+El primer comando agrega registros y no debe ejecutarse varias veces sobre el mismo recurso si no se desean duplicados.
 
 ## 5. Ejecutar en Android
 
@@ -133,7 +132,7 @@ Archivo generado:
 android/app/build/outputs/apk/debug/app-debug.apk
 ```
 
-El nombre del APK puede cambiarse al copiar el archivo para la entrega; eso no modifica el identificador de la aplicación. Un APK de depuración permite instalar y evaluar la aplicación durante la Prueba 1; para distribuirla en una tienda se requiere generar y firmar una versión de publicación.
+El nombre del APK puede cambiarse al copiar el archivo para la entrega; eso no modifica el identificador de la aplicación. Un APK de depuración permite instalar y revisar la aplicación; para distribuirla en una tienda se requiere generar y firmar una versión de publicación.
 
 ## 6. Organización del proyecto
 
@@ -161,15 +160,13 @@ src/
       tarjeta-incidencia.component.ts  Tarjetas de incidencias
 android/                     Proyecto Android/Gradle
 assets/                      Recursos fuente del icono y splash
-scripts/                     Herramientas de verificación y datos de prueba
-docs/capturas/               Capturas de las pruebas realizadas
+scripts/                     Herramientas de verificación y datos
+docs/capturas/               Capturas de las pantallas de la aplicación
 ```
 
 Las rutas de la interfaz son `/inicio`, `/incidencias`, `/nuevo`, `/seguimiento` y `/detalle/:id`.
 
 ## 7. Verificación desde computadora
-
-Las capturas de esta sección son complementarias. La evidencia principal está tomada en Android.
 
 | Datos recibidos desde MockAPI | Comprobación del registro en la web |
 |:---:|:---:|
@@ -179,8 +176,47 @@ La carga de cinco en cinco puede revisarse en la pestaña de red del navegador (
 
 ## 8. Alcance y observaciones
 
-UrbanInspect fue desarrollado para la **Prueba 1 de Aplicaciones Móviles (ESFOT)**. La aplicación permite registrar, consultar y actualizar incidencias urbanas desde Android, adjuntar fotografías, obtener coordenadas, consultar el clima y mantener seguimientos y borradores locales.
+UrbanInspect permite registrar, consultar y actualizar incidencias urbanas desde Android, adjuntar fotografías, obtener coordenadas, consultar el clima y mantener seguimientos y borradores locales.
 
-Las incidencias se almacenan en MockAPI y las fotografías se guardan en Cloudinary. Los registros `DEMO-...` corresponden a datos ficticios incorporados para comprobar paginación, prioridades y cambios de estado; no son reportes oficiales. El acceso al servicio REST está planteado para el entorno de evaluación, sin autenticación ni permisos diferenciados por usuario.
+Las incidencias se almacenan en MockAPI y las fotografías se guardan en Cloudinary. El acceso al servicio REST está planteado para el entorno de trabajo de la aplicación, sin autenticación ni permisos diferenciados por usuario.
 
 El uso de la cámara y del GPS depende de los permisos otorgados en Android. Las consultas a MockAPI, Cloudinary y Open-Meteo requieren conexión a internet y disponibilidad de estos servicios. La precipitación mostrada corresponde a la última hora consultada, por lo que puede diferir de las condiciones meteorológicas instantáneas.
+
+## 9. Almacenamiento de fotografías con Cloudinary
+
+UrbanInspect utiliza **Cloudinary** para almacenar las fotografías asociadas a las incidencias. Desde la aplicación se envía la imagen al servicio y se conserva la URL HTTPS devuelta, de manera que la evidencia pueda consultarse posteriormente desde el listado y el detalle de cada incidencia.
+
+La conexión se mantiene organizada desde `src/app/config/config.ts`, mientras que el servicio `src/app/services/fotos.service.ts` se encarga de gestionar la carga de las imágenes. Las credenciales privadas no deben colocarse en el código del frontend.
+
+### Panel de administración de Cloudinary
+
+En el panel se puede consultar el entorno asociado al proyecto y revisar el uso general de los recursos.
+
+<p align="center">
+  <img src="docs/capturas/cloudinary-dashboard.png" alt="Panel principal de Cloudinary utilizado por UrbanInspect" width="850">
+</p>
+
+### Biblioteca multimedia
+
+La biblioteca multimedia permite visualizar y organizar los archivos almacenados en Cloudinary, incluidas las fotografías utilizadas como evidencia de las incidencias.
+
+<p align="center">
+  <img src="docs/capturas/cloudinary-media-library.png" alt="Biblioteca multimedia de Cloudinary asociada a UrbanInspect" width="850">
+</p>
+
+## 10. Ajustes de presentación visual
+
+La actualización de esta versión se concentra en la **presentación visual y la usabilidad de la aplicación**, ya que la estructura funcional del sistema se encontraba implementada. Se prioriza una apariencia más uniforme y ordenada mediante:
+
+- Uso consistente de colores, fondos y contrastes.
+- Mejor jerarquía visual en títulos, subtítulos e indicadores.
+- Organización de tarjetas y bloques de información.
+- Ajustes de espaciado, alineación y distribución de los elementos.
+- Presentación más clara de formularios, botones y estados de las incidencias.
+- Mayor consistencia entre las pantallas y la navegación.
+
+Se conserva el funcionamiento existente: registro, consulta y actualización de incidencias, comunicación con MockAPI, almacenamiento de fotografías en Cloudinary, ubicación, consulta meteorológica y almacenamiento local. El alcance de esta actualización no consiste en rehacer esos procesos, sino en mejorar la forma en que la información y las acciones se presentan al usuario.
+
+## 11. Organización de la actualización
+
+Los cambios de presentación visual se mantienen en una rama independiente denominada `mejora-visual-urbaninspect`, creada a partir de `main`. De esta manera, `main` conserva la versión original del proyecto y las mejoras quedan separadas para su revisión, sin reemplazar la versión inicial.
