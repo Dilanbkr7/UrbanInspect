@@ -1,222 +1,172 @@
 # UrbanInspect
 
-**Registro y seguimiento de incidencias urbanas**
+**Firebase Hosting + inicio de sesión · Reportes Quito**
 
-UrbanInspect es una aplicación para Android enfocada en reportar problemas de infraestructura urbana: baches, luminarias dañadas, señalización deteriorada, alcantarillas obstruidas y daños en parques. Permite registrar la ubicación, adjuntar evidencia fotográfica, consultar el clima y dar seguimiento a los casos.
+**Proyecto publicado:** [urbaninspect-deploy.web.app](https://urbaninspect-deploy.web.app)
 
-El proyecto está desarrollado con **Ionic, Angular, TypeScript y Capacitor**. Utiliza **MockAPI** para las operaciones REST, **Cloudinary** para almacenar fotografías y **Open-Meteo** para las condiciones meteorológicas. Los registros marcados para seguimiento y los formularios incompletos se conservan localmente en el dispositivo.
+**Rama de entrega:** [firebase-hosting-login](https://github.com/Dilanbkr7/UrbanInspect/tree/firebase-hosting-login)
 
-## 1. Capturas de la aplicación Android
+UrbanInspect permite registrar problemas de infraestructura urbana, adjuntar fotografías, indicar la ubicación y consultar el estado de cada reporte. La aplicación está desarrollada con Ionic, Angular y Capacitor; funciona en el navegador y conserva el proyecto Android de la primera prueba.
 
-Las capturas corresponden a las pantallas principales de UrbanInspect y permiten revisar el flujo de registro, consulta y seguimiento de incidencias.
+## Firebase Hosting + inicio de sesión
 
-### Instalación y registro
+La versión web está publicada en el proyecto propio `urbaninspect-deploy`. Para entrar, se puede crear una cuenta desde **Crea una cuenta** y después iniciar sesión con ese correo y contraseña.
 
-| Pantalla de inicio | Formulario de incidencia | Fotografía tomada desde Android |
+- Registro con nombre, correo y confirmación de contraseña.
+- Inicio de sesión mediante Firebase Authentication.
+- Sesión conservada al recargar la página.
+- Recuperación de contraseña por correo.
+- Pantalla **Mi cuenta** con los datos del usuario y cierre de sesión.
+- Acceso protegido al panel, listado, registro, seguimiento y detalle de incidencias.
+- Regreso a la pantalla solicitada después de iniciar sesión.
+- Borradores y seguimientos locales separados por usuario.
+
+Las pantallas de acceso se adaptan a celular y computadora. Las contraseñas se gestionan con Firebase Authentication; la aplicación no las guarda en su código ni en las preferencias locales.
+
+El repositorio [login-firebase](https://github.com/Dilanbkr7/login-firebase) se utilizó como referencia para el acceso con correo y contraseña. La versión publicada y el APK utilizan el mismo proyecto Firebase, `urbaninspect-deploy`: una cuenta creada en cualquiera de las dos versiones sirve para ingresar en ambas.
+
+## Capturas del APK en Android
+
+Las siguientes capturas se tomaron en un dispositivo Android el 5 de noviembre de 2026. Muestran la apertura del APK, el registro de la cuenta, el acceso y la consulta de reportes con la sesión iniciada.
+
+### Apertura e inicio de sesión
+
+| Pantalla de apertura | Inicio de sesión | Datos de acceso |
 |:---:|:---:|:---:|
-| <img src="docs/capturas/01_splash.jpg" width="210" alt="Pantalla de inicio"> | <img src="docs/capturas/02_formulario.jpg" width="210" alt="Formulario de registro"> | <img src="docs/capturas/03_fotografia.jpg" width="210" alt="Previsualización de la fotografía"> |
+| <img src="docs/capturas/23_splash_android.jpg" width="240" alt="Pantalla de apertura de UrbanInspect con la Virgen del Panecillo"> | <img src="docs/capturas/24_login_android.jpg" width="240" alt="Inicio de sesión del APK en Android"> | <img src="docs/capturas/25_login_datos_android.jpg" width="240" alt="Correo ingresado y contraseña oculta antes de iniciar sesión"> |
 
-### Consulta meteorológica y registro remoto
+### Registro y acceso al panel
 
-| Condiciones meteorológicas | Confirmación de registro | Incidencia en listado |
+| Crear una cuenta | Formulario completado | Panel con sesión iniciada |
 |:---:|:---:|:---:|
-| <img src="docs/capturas/04_clima.jpg" width="210" alt="Temperatura y precipitación de Open-Meteo"> | <img src="docs/capturas/05_guardado.jpg" width="210" alt="Confirmación de incidencia registrada"> | <img src="docs/capturas/06_listado.jpg" width="210" alt="Listado de incidencias"> |
+| <img src="docs/capturas/26_registro_android.jpg" width="240" alt="Formulario de registro con nombre, correo y confirmación de contraseña"> | <img src="docs/capturas/27_registro_datos_android.jpg" width="240" alt="Formulario de registro completado con las contraseñas ocultas"> | <img src="docs/capturas/28_panel_android.jpg" width="240" alt="Panel que saluda al usuario e indica el estado de los últimos cinco reportes"> |
 
-### Detalle, seguimiento y recuperación
+### Cuenta y consulta de incidencias
 
-| Actualización de estado | Seguimiento local | Borrador recuperable |
-|:---:|:---:|:---:|
-| <img src="docs/capturas/07_detalle_estado.jpg" width="210" alt="Actualización del estado"> | <img src="docs/capturas/08_seguimiento.jpg" width="210" alt="Incidencias marcadas para seguimiento"> | <img src="docs/capturas/09_borrador.jpg" width="210" alt="Aviso de borrador local"> |
+| Mi cuenta | Reportes y evidencia fotográfica |
+|:---:|:---:|
+| <img src="docs/capturas/29_cuenta_android.jpg" width="260" alt="Cuenta de Dilan Obando con sesión iniciada y botón para cerrar sesión"> | <img src="docs/capturas/30_incidencias_android.jpg" width="260" alt="Listado de incidencias en Android con estado, dirección, sector y fotografía"> |
 
-### Validaciones y evidencia en el listado
+## Capturas de la versión publicada
 
-| Prioridad alta | Ubicación no ingresada | Imagen del registro |
-|:---:|:---:|:---:|
-| <img src="docs/capturas/10_prioridad_alta.jpg" width="210" alt="Aviso de fotografía para prioridad alta"> | <img src="docs/capturas/11_sin_ubicacion.jpg" width="210" alt="Aviso de clima sin coordenadas"> | <img src="docs/capturas/12_foto_en_listado.jpg" width="210" alt="Fotografía en el listado"> |
+Estas capturas se tomaron desde la URL pública el 5 de noviembre de 2026. Para comprobar el registro y el acceso se utilizó una cuenta temporal de prueba, eliminada al terminar. El listado muestra datos recibidos del servicio de incidencias.
 
-## 2. Funciones principales
+### Acceso desde computadora y celular
 
-- **Listado de incidencias:** consulta los datos del servidor de manera incremental, solicitando hasta cinco registros por página. Muestra tipo, descripción, dirección, sector, fecha, prioridad, estado y fotografía cuando existe.
-- **Seguimiento local:** permite marcar y quitar incidencias; las marcas se almacenan en el teléfono, sin cambiar la información de MockAPI.
-- **Registro de incidencias:** valida tipo, descripción, dirección, sector y prioridad. En prioridad alta exige una fotografía y para baches exige coordenadas válidas.
-- **Cámara y fotografías:** en Android permite tomar una fotografía, revisarla y enviarla a Cloudinary. Se guarda la URL HTTPS en el registro remoto y la imagen puede consultarse después.
-- **Ubicación:** obtiene coordenadas mediante GPS con permiso del usuario o permite escribirlas manualmente. Si no hay coordenadas y no se trata de un bache, puede registrarse el caso sin consulta meteorológica.
-- **Clima:** consulta la temperatura, condición meteorológica y precipitación de la última hora a través de Open-Meteo. Si la precipitación supera 5 mm, presenta una advertencia sin bloquear automáticamente el registro.
-- **Borradores:** guarda información incompleta localmente y ofrece las opciones **Continuar** y **Descartar** al recuperar el formulario.
-- **Estados:** permite pasar de pendiente a en proceso o resuelta, y de en proceso a resuelta. Para resolver se necesita observación; una incidencia resuelta no puede retroceder a otro estado.
+| Inicio de sesión web | Inicio de sesión móvil |
+|:---:|:---:|
+| <img src="docs/capturas/15_login_web.png" width="620" alt="Inicio de sesión de UrbanInspect publicado en Firebase Hosting"> | <img src="docs/capturas/16_login_movil.png" width="230" alt="Formulario de acceso en un navegador móvil"> |
 
-## 3. Herramientas y decisiones técnicas
+### Registro y recuperación
 
-| Tecnología | Uso en UrbanInspect |
+| Crear una cuenta | Recuperar contraseña |
+|:---:|:---:|
+| <img src="docs/capturas/17_registro_web.png" width="460" alt="Registro con nombre, correo y contraseña"> | <img src="docs/capturas/22_recuperar_web.png" width="460" alt="Solicitud de recuperación de contraseña"> |
+
+### Sesión iniciada y reportes
+
+| Panel de inspección | Listado de incidencias |
+|:---:|:---:|
+| <img src="docs/capturas/18_panel_sesion.png" width="460" alt="Panel con sesión iniciada e indicadores de los últimos reportes"> | <img src="docs/capturas/19_reportes_web.png" width="460" alt="Reportes consultados desde MockAPI en el sitio publicado"> |
+
+### Cuenta y validación del acceso
+
+| Mi cuenta | Contraseña incorrecta |
+|:---:|:---:|
+| <img src="docs/capturas/20_cuenta_firebase.png" width="460" alt="Cuenta de prueba con sesión iniciada y opción para salir"> | <img src="docs/capturas/21_validacion_login.png" width="460" alt="Mensaje al ingresar una contraseña incorrecta"> |
+
+## Funciones de los reportes
+
+Se pueden registrar baches, luminarias dañadas, problemas de señalización, alcantarillas obstruidas y daños en parques. Cada incidencia incluye descripción, dirección, sector, prioridad y estado.
+
+El listado obtiene los registros de cinco en cinco. Desde el detalle se puede pasar de pendiente a en proceso o resuelta. Para resolver una incidencia se necesita una observación; una vez resuelta no puede retroceder de estado.
+
+Las fotografías se envían a Cloudinary y se conserva su URL HTTPS. La prioridad alta exige una fotografía. Los baches requieren coordenadas válidas, que pueden obtenerse por GPS o escribirse manualmente. Open-Meteo permite consultar temperatura y precipitación antes del envío; si la precipitación supera 5 mm en una hora, la aplicación muestra una advertencia.
+
+Los formularios incompletos y los casos marcados para seguimiento se guardan localmente. No se sincronizan entre dispositivos.
+
+## Servicios utilizados
+
+| Servicio | Uso |
 |---|---|
-| Ionic y Angular | Vistas, navegación, controles, formularios y eventos de la interfaz |
-| TypeScript | Tipos de datos, validaciones, servicios y estados |
-| Capacitor | Integración con Android y acceso a cámara, ubicación y almacenamiento |
-| MockAPI | Operaciones REST de consulta, creación y actualización de incidencias |
-| Cloudinary | Almacenamiento externo de imágenes y recuperación mediante URL |
-| Open-Meteo | Condiciones meteorológicas para las coordenadas registradas |
-| Capacitor Preferences | Seguimientos y datos del borrador en almacenamiento local |
-| Capacitor Filesystem | Conservación local de la fotografía de un borrador |
+| Firebase Hosting | Publicación de la aplicación web con HTTPS |
+| Firebase Authentication | Registro, acceso, sesión y recuperación de contraseña |
+| MockAPI | Consulta, creación y actualización de incidencias |
+| Cloudinary | Almacenamiento de fotografías |
+| Open-Meteo | Consulta de condiciones meteorológicas |
+| Capacitor | Cámara, ubicación y almacenamiento en Android |
 
-Para la aplicación se utiliza MockAPI como servicio REST, con el propósito de gestionar la comunicación HTTP, la paginación y las actualizaciones remotas sin desarrollar un backend propio. El servicio no incorpora un sistema de autenticación de usuarios configurado en esta aplicación.
+Firebase controla el acceso a las pantallas de la aplicación. El servicio de incidencias conserva MockAPI de la primera prueba: sus endpoints no validan tokens de Firebase ni aplican permisos por usuario. Los reportes son compartidos y se utilizan con fines académicos; no son reportes oficiales del Municipio de Quito.
 
-## 4. Requisitos para ejecutar
+## Ejecutar en el navegador
 
-- Node.js y npm compatibles con la versión de Angular del proyecto.
-- Ionic CLI instalado.
-- Android Studio, Android SDK y JDK configurados para generar el APK.
-- Conexión a internet para MockAPI, Cloudinary y Open-Meteo.
+Se necesita Node.js compatible con Angular 22 y conexión a internet para los servicios externos. Esta entrega se comprobó con Node.js 24.
 
-### Ejecutar en el navegador
-
-Abrir CMD en la carpeta descargada del repositorio:
-
-```cmd
+```bash
 npm ci
-npm install -g @ionic/cli
-ionic serve
+npm start
 ```
 
-La aplicación se abre normalmente en `http://localhost:8100`. Las funciones de GPS y cámara nativos se comprueban en Android; en el navegador se puede seleccionar una fotografía del equipo.
+La aplicación se abre en `http://localhost:4200`. Se puede crear una cuenta desde el formulario de registro. En el navegador se selecciona una fotografía del equipo; la cámara nativa se utiliza desde Android.
 
-### Configurar los servicios
+La configuración pública de Firebase está en `src/app/config/firebase.config.ts`. Las direcciones de MockAPI y Cloudinary están en `src/app/config/config.ts`. No se deben agregar contraseñas, claves privadas ni cuentas de servicio a esos archivos.
 
-En `src/app/config/config.ts` se encuentran los valores públicos de conexión:
+## Publicar en Firebase Hosting
 
-```typescript
-export const CONFIG = {
-  mockApiBaseUrl: 'https://TU_PROYECTO.mockapi.io/api/v1',
-  cloudinaryCloudName: 'TU_CLOUD_NAME',
-  cloudinaryUnsignedPreset: 'urbaninspect_unsigned',
-  pageSize: 5,
-} as const;
+```bash
+npm run firebase:login
+npm run deploy
 ```
 
-El bloque anterior ilustra la estructura de la configuración. Si se crea un nuevo entorno, se reemplazan los valores por los de ese entorno. No se añade `/incidencias` al final de `mockApiBaseUrl`, porque el servicio lo incorpora.
+La cuenta utilizada debe tener acceso al proyecto `urbaninspect-deploy`. Antes de publicar, el comando verifica la configuración de Firebase y genera la compilación de producción. Hosting publica la carpeta `www`; las rutas se redirigen a `index.html` para permitir abrir o recargar pantallas como `/incidencias` y `/cuenta`.
 
-**MockAPI:** crear el recurso `incidencias` con los campos `codigo`, `tipo`, `descripcion`, `direccion`, `sector`, `prioridad`, `fecha`, `estado`, `fotoUrl`, `latitud`, `longitud`, `observacion` y `actualizadoEn`. El campo `id` lo genera el servicio. Para la paginación se utilizan `page` y `limit`.
+## Comprobaciones
 
-**Cloudinary:** configurar un preset `urbaninspect_unsigned` de tipo *Unsigned* para la carga de fotografías. No colocar API Secret ni credenciales privadas en el frontend o el repositorio. **Open-Meteo** se consulta sin una clave privada en esta implementación.
-
-### Datos y comprobación de servicios
-
-Los scripts disponibles en `scripts/` permiten insertar registros y comprobar la respuesta del servicio:
-
-```cmd
-scripts\INSERTAR_18_DATOS.cmd
-scripts\COMPROBAR_API.cmd
+```bash
+npm run test:unit
+npm run test:auth
+npm run build
 ```
 
-El primer comando agrega registros y no debe ejecutarse varias veces sobre el mismo recurso si no se desean duplicados.
+Se comprobaron 2 pruebas unitarias y 18 pruebas de acceso en Chrome, con vistas de celular y computadora. Las pruebas de acceso levantan el emulador oficial de Firebase Authentication con un proyecto de demostración y no crean usuarios en el proyecto publicado. Requieren Google Chrome instalado; las consultas de reportes se sustituyen durante esas pruebas para revisar el acceso de forma independiente.
 
-## 5. Ejecutar en Android
+También se revisó el sitio publicado con Firebase real: creación de una cuenta, inicio de sesión, recarga, consulta de reportes, contraseña incorrecta, cierre de sesión y bloqueo de una ruta privada. La cuenta temporal se eliminó al terminar.
 
-Desde la raíz del proyecto:
+## Preparar Android y generar el APK
 
-```cmd
-ionic build
-npx cap sync android
-npx cap open android
+Desde CMD, en la carpeta del proyecto:
+
+```bat
+cd /d C:\Proyectos\urbaninspect
+npm run android:open
 ```
 
-También se puede crear un APK de depuración desde CMD:
+El comando compila la aplicación, copia los archivos actualizados a Android y abre Android Studio. También se puede ejecutar `npm run android:prepare` para compilar y sincronizar sin abrir el IDE.
 
-```cmd
-cd android
-gradlew.bat assembleDebug
-```
-
-Archivo generado:
+En Android Studio, con la variante `debug`, seleccionar **Build → Generate Bundle(s) / APK(s) → Generate APK(s)**. Al terminar, la opción **Locate** permite encontrar el archivo:
 
 ```text
 android/app/build/outputs/apk/debug/app-debug.apk
 ```
 
-El nombre del APK puede cambiarse al copiar el archivo para la entrega; eso no modifica el identificador de la aplicación. Un APK de depuración permite instalar y revisar la aplicación; para distribuirla en una tienda se requiere generar y firmar una versión de publicación.
+Este APK se puede copiar al celular para instalarlo. Se necesitan Android Studio, Android SDK y JDK configurados; la cámara y el GPS dependen de los permisos del dispositivo. La compilación del código y los recursos de Android se verificó con resultado `BUILD SUCCESSFUL` antes de generar el APK desde Android Studio.
 
-## 6. Organización del proyecto
+## Capturas de las funciones de la primera prueba
 
-```text
-src/
-  app/
-    app.component.ts           Inicio general y detección de borrador
-    app.routes.ts              Rutas de navegación
-    config/config.ts           Direcciones de los servicios
-    models/incidencia.ts       Interfaces y tipos de datos
-    pages/
-      inicio.page.ts           Panel principal
-      incidencias.page.ts      Listado y carga incremental
-      nuevo.page.ts            Formulario, cámara, GPS, clima y registro
-      detalle.page.ts          Detalle y actualización de estados
-      seguimiento.page.ts      Casos marcados localmente
-    services/
-      incidencias.service.ts   Solicitudes HTTP a MockAPI
-      fotos.service.ts         Subida de imágenes a Cloudinary
-      clima.service.ts         Consulta a Open-Meteo
-      seguimiento.service.ts   Códigos guardados en Preferences
-      borrador.service.ts      Borrador y foto local
-    shared/
-      navegacion.component.ts  Barra inferior
-      tarjeta-incidencia.component.ts  Tarjetas de incidencias
-android/                     Proyecto Android/Gradle
-assets/                      Recursos fuente del icono y splash
-scripts/                     Herramientas de verificación y datos
-docs/capturas/               Capturas de las pantallas de la aplicación
-```
+Se conservan las capturas anteriores del registro de incidencias, fotografía, clima, seguimiento y recuperación de borradores.
 
-Las rutas de la interfaz son `/inicio`, `/incidencias`, `/nuevo`, `/seguimiento` y `/detalle/:id`.
+| Inicio | Formulario | Fotografía |
+|:---:|:---:|:---:|
+| <img src="docs/capturas/01_splash.jpg" width="210" alt="Inicio en Android"> | <img src="docs/capturas/02_formulario.jpg" width="210" alt="Formulario de incidencia"> | <img src="docs/capturas/03_fotografia.jpg" width="210" alt="Fotografía tomada en Android"> |
 
-## 7. Verificación desde computadora
+| Clima | Registro completado | Listado |
+|:---:|:---:|:---:|
+| <img src="docs/capturas/04_clima.jpg" width="210" alt="Consulta de clima"> | <img src="docs/capturas/05_guardado.jpg" width="210" alt="Confirmación del registro"> | <img src="docs/capturas/06_listado.jpg" width="210" alt="Listado en Android"> |
 
-| Datos recibidos desde MockAPI | Comprobación del registro en la web |
-|:---:|:---:|
-| <img src="docs/capturas/13_mockapi_web.png" width="390" alt="Respuesta JSON de MockAPI"> | <img src="docs/capturas/14_verificacion_web.png" width="390" alt="Listado web con registro creado"> |
+| Estado del reporte | Seguimiento | Borrador |
+|:---:|:---:|:---:|
+| <img src="docs/capturas/07_detalle_estado.jpg" width="210" alt="Detalle y cambio de estado"> | <img src="docs/capturas/08_seguimiento.jpg" width="210" alt="Incidencias en seguimiento"> | <img src="docs/capturas/09_borrador.jpg" width="210" alt="Recuperación de borrador"> |
 
-La carga de cinco en cinco puede revisarse en la pestaña de red del navegador (`F12` → `Network` → `Fetch/XHR`) o usando `scripts\COMPROBAR_API.cmd`. Las consultas utilizan `page` y `limit`; los resultados no están precargados en una lista fija dentro del proyecto.
-
-## 8. Alcance y observaciones
-
-UrbanInspect permite registrar, consultar y actualizar incidencias urbanas desde Android, adjuntar fotografías, obtener coordenadas, consultar el clima y mantener seguimientos y borradores locales.
-
-Las incidencias se almacenan en MockAPI y las fotografías se guardan en Cloudinary. El acceso al servicio REST está planteado para el entorno de trabajo de la aplicación, sin autenticación ni permisos diferenciados por usuario.
-
-El uso de la cámara y del GPS depende de los permisos otorgados en Android. Las consultas a MockAPI, Cloudinary y Open-Meteo requieren conexión a internet y disponibilidad de estos servicios. La precipitación mostrada corresponde a la última hora consultada, por lo que puede diferir de las condiciones meteorológicas instantáneas.
-
-## 9. Almacenamiento de fotografías con Cloudinary
-
-UrbanInspect utiliza **Cloudinary** para almacenar las fotografías asociadas a las incidencias. Desde la aplicación se envía la imagen al servicio y se conserva la URL HTTPS devuelta, de manera que la evidencia pueda consultarse posteriormente desde el listado y el detalle de cada incidencia.
-
-La conexión se mantiene organizada desde `src/app/config/config.ts`, mientras que el servicio `src/app/services/fotos.service.ts` se encarga de gestionar la carga de las imágenes. Las credenciales privadas no deben colocarse en el código del frontend.
-
-### Panel de administración de Cloudinary
-
-En el panel se puede consultar el entorno asociado al proyecto y revisar el uso general de los recursos.
-
-<p align="center">
-  <img src="docs/capturas/cloudinary-dashboard.png" alt="Panel principal de Cloudinary utilizado por UrbanInspect" width="850">
-</p>
-
-### Biblioteca multimedia
-
-La biblioteca multimedia permite visualizar y organizar los archivos almacenados en Cloudinary, incluidas las fotografías utilizadas como evidencia de las incidencias.
-
-<p align="center">
-  <img src="docs/capturas/cloudinary-media-library.png" alt="Biblioteca multimedia de Cloudinary asociada a UrbanInspect" width="850">
-</p>
-
-## 10. Ajustes de presentación visual
-
-La actualización de esta versión se concentra en la **presentación visual y la usabilidad de la aplicación**, ya que la estructura funcional del sistema se encontraba implementada. Se prioriza una apariencia más uniforme y ordenada mediante:
-
-- Uso consistente de colores, fondos y contrastes.
-- Mejor jerarquía visual en títulos, subtítulos e indicadores.
-- Organización de tarjetas y bloques de información.
-- Ajustes de espaciado, alineación y distribución de los elementos.
-- Presentación más clara de formularios, botones y estados de las incidencias.
-- Mayor consistencia entre las pantallas y la navegación.
-
-Se conserva el funcionamiento existente: registro, consulta y actualización de incidencias, comunicación con MockAPI, almacenamiento de fotografías en Cloudinary, ubicación, consulta meteorológica y almacenamiento local. El alcance de esta actualización no consiste en rehacer esos procesos, sino en mejorar la forma en que la información y las acciones se presentan al usuario.
-
-## 11. Organización de la actualización
-
-Los cambios de presentación visual se mantienen en una rama independiente denominada `mejora-visual-urbaninspect`, creada a partir de `main`. De esta manera, `main` conserva la versión original del proyecto y las mejoras quedan separadas para su revisión, sin reemplazar la versión inicial.
+| Prioridad alta | Validación de ubicación | Evidencia en el listado |
+|:---:|:---:|:---:|
+| <img src="docs/capturas/10_prioridad_alta.jpg" width="210" alt="Fotografía requerida para prioridad alta"> | <img src="docs/capturas/11_sin_ubicacion.jpg" width="210" alt="Validación de ubicación"> | <img src="docs/capturas/12_foto_en_listado.jpg" width="210" alt="Fotografía de una incidencia registrada"> |
