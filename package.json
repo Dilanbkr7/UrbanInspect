@@ -7,6 +7,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "android:prepare": "npm run build && cap sync android",
+    "android:open": "npm run android:prepare && cap open android",
     "watch": "ng build --watch --configuration development",
     "lint": "npm run eslint && npm run typecheck:e2e && npm run prettier -- --check",
     "lint:fix": "npm run eslint -- --fix && npm run prettier -- --write",
@@ -16,7 +18,11 @@
     "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "ng test --no-watch",
     "test:unit:watch": "ng test --watch",
-    "test:e2e": "playwright test"
+    "test:e2e": "npm run test:auth",
+    "check:firebase": "node scripts/verificar-firebase.mjs",
+    "firebase:login": "firebase login",
+    "deploy": "firebase deploy --only hosting",
+    "test:auth": "firebase emulators:exec --only auth --project demo-urbaninspect --non-interactive \"playwright test\""
   },
   "private": true,
   "dependencies": {
@@ -38,6 +44,7 @@
     "@capacitor/splash-screen": "^8.0.2",
     "@capacitor/status-bar": "8.0.4",
     "@ionic/angular": "^9.0.0",
+    "firebase": "^13.2.0",
     "ionicons": "^8.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
@@ -56,6 +63,7 @@
     "@types/node": "^24.0.0",
     "angular-eslint": "22.6.0",
     "eslint": "^10.10.0",
+    "firebase-tools": "^15.35.0",
     "jsdom": "^30.1.1",
     "prettier": "^3.9.10",
     "typescript": "~6.0.0",
@@ -63,5 +71,5 @@
     "vitest": "~5.0.5"
   },
   "prettier": "@ionic/prettier-config",
-  "description": "An Ionic project"
+  "description": "Reportes y seguimiento de incidencias urbanas en Quito"
 }

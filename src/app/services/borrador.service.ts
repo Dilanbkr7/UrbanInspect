@@ -1,12 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Preferences } from '@capacitor/preferences';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Borrador } from '../models/incidencia';
+import { AuthService } from './auth.service';
 
 @Injectable({providedIn:'root'})
 export class BorradorService {
-  private readonly CLAVE = 'urbaninspect_borrador_v1';
-  private readonly ARCHIVO = 'urbaninspect/borrador.jpg';
+  private readonly auth = inject(AuthService);
+  private get CLAVE() { return `urbaninspect_borrador_v2_${this.auth.usuario()?.uid ?? 'sin_sesion'}`; }
+  private get ARCHIVO() { return `urbaninspect/${this.auth.usuario()?.uid ?? 'sin_sesion'}/borrador.jpg`; }
 
   async obtener(): Promise<Borrador | null> {
     const {value} = await Preferences.get({key:this.CLAVE});

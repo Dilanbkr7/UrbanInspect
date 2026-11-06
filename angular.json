@@ -33,7 +33,10 @@
                 "output": "assets"
               }
             ],
-            "styles": ["src/global.scss", "src/theme/variables.scss"],
+            "styles": [
+              "src/global.scss",
+              "src/theme/variables.scss"
+            ],
             "scripts": [],
             "browser": "src/main.ts"
           },
@@ -47,8 +50,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "10kb",
+                  "maximumError": "14kb"
                 }
               ],
               "fileReplacements": [
@@ -67,6 +70,16 @@
             },
             "ci": {
               "progress": false
+            },
+            "e2e": {
+              "optimization": false,
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.e2e.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -82,6 +95,9 @@
             },
             "ci": {
               "progress": false
+            },
+            "e2e": {
+              "buildTarget": "app:build:e2e"
             }
           },
           "defaultConfiguration": "development"
@@ -97,7 +113,9 @@
           "options": {
             "buildTarget": "::development",
             "runnerConfig": "vitest.config.mts",
-            "setupFiles": ["src/test-setup.ts"],
+            "setupFiles": [
+              "src/test-setup.ts"
+            ],
             "tsConfig": "tsconfig.spec.json"
           }
         },

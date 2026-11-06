@@ -1,0 +1,158 @@
+<ion-content>
+  <main class="acceso">
+    <aside class="ciudad" aria-label="UrbanInspect, reportes urbanos de Quito">
+      <a class="marca" routerLink="/login"
+        ><span class="isotipo">U<span>↗</span></span
+        >UrbanInspect<span class="etiqueta">QUITO</span></a
+      >
+      <div class="relato">
+        <span class="sobrelinea"><span class="punto"></span> UNA MEJOR CIUDAD, ENTRE TODOS</span>
+        <h1>Lo que ves.<br />Lo que reportas.<br /><em>Lo que cambia.</em></h1>
+        <p>Un bache, una luminaria, un espacio que necesita atención. Cada reporte es un paso para cuidar Quito.</p>
+        <div class="capacidades">
+          <span>◎ Ubicación precisa</span><span>▧ Evidencia fotográfica</span><span>↗ Seguimiento</span>
+        </div>
+      </div>
+      <div class="paisaje" aria-hidden="true">
+        <div class="montana uno"></div>
+        <div class="montana dos"></div>
+        <div class="edificios"></div>
+        <span class="coordenadas">0°13′ S &nbsp; 78°31′ O<br />QUITO · ECUADOR</span><span class="pin">◎</span>
+      </div>
+      <div class="pie-ciudad"><span>Observa. Reporta. Transforma.</span><span>01 / QUITO</span></div>
+    </aside>
+
+    <section class="formulario">
+      <div class="marca-movil"><span class="isotipo">U↗</span><strong>UrbanInspect</strong><span>QUITO</span></div>
+      <div class="caja">
+        <span class="paso"
+          >{{ modo() === 'registro' ? 'SÚMATE A URBANINSPECT' : modo() === 'recuperar' ? 'VOLVAMOS A CONECTAR' : 'TU
+          PUNTO DE PARTIDA' }}</span
+        >
+        <h2>{{ titulo() }}</h2>
+        <p class="introduccion">
+          {{ modo() === 'registro' ? 'Crea tu cuenta y empieza a reportar lo que tu barrio necesita.' : modo() ===
+          'recuperar' ? 'Te enviaremos un enlace para restablecer tu contraseña.' : 'Inicia sesión para registrar y
+          seguir las incidencias de tu ciudad.' }}
+        </p>
+
+        @if (!auth.configurado) {
+        <p class="mensaje error" role="status">
+          El acceso estará disponible cuando termine la configuración del proyecto.
+        </p>
+        } @if (error()) {
+        <p class="mensaje error" role="alert">{{ error() }}</p>
+        } @if (enviado()) {
+        <div class="mensaje exito" role="status">
+          <strong>Revisa tu correo</strong>
+          <p>
+            Si existe una cuenta con ese correo, recibirás un enlace para cambiar tu contraseña. Revisa también la
+            carpeta de spam.
+          </p>
+        </div>
+        <a class="principal enlace" [routerLink]="enlace('/login')">Volver al inicio de sesión <span>→</span></a>
+        } @else {
+        <form #form="ngForm" (ngSubmit)="enviar(form)" novalidate>
+          @if (modo() === 'registro') {
+          <label [for]="modo() + '-nombre'">Tu nombre</label>
+          <input
+            [id]="modo() + '-nombre'"
+            name="nombre"
+            [(ngModel)]="nombre"
+            #nombreCampo="ngModel"
+            required
+            minlength="2"
+            maxlength="80"
+            autocomplete="name"
+            placeholder="¿Cómo te llamas?"
+            [disabled]="ocupado()"
+            [attr.aria-invalid]="nombreCampo.touched && nombreCampo.invalid"
+          />
+          }
+          <label [for]="modo() + '-correo'">Correo electrónico</label>
+          <input
+            [id]="modo() + '-correo'"
+            name="correo"
+            type="email"
+            [(ngModel)]="correo"
+            #correoCampo="ngModel"
+            required
+            email
+            autocomplete="email"
+            inputmode="email"
+            placeholder="tu.correo@ejemplo.com"
+            [disabled]="ocupado()"
+            [attr.aria-invalid]="correoCampo.touched && correoCampo.invalid"
+          />
+          @if (correoCampo.touched && correoCampo.invalid) {
+          <small class="validacion">Ingresa un correo electrónico válido.</small> } @if (modo() !== 'recuperar') {
+          <label [for]="modo() + '-clave'">Contraseña</label>
+          <div class="clave">
+            <input
+              [id]="modo() + '-clave'"
+              name="clave"
+              [type]="visible() ? 'text' : 'password'"
+              [(ngModel)]="clave"
+              #claveCampo="ngModel"
+              required
+              [minlength]="modo() === 'registro' ? 6 : 1"
+              [autocomplete]="modo() === 'registro' ? 'new-password' : 'current-password'"
+              [placeholder]="modo() === 'registro' ? 'Al menos 6 caracteres' : 'Tu contraseña'"
+              [disabled]="ocupado()"
+              [attr.aria-invalid]="claveCampo.touched && claveCampo.invalid"
+            /><button
+              type="button"
+              class="ver"
+              (click)="visible.set(!visible())"
+              [attr.aria-label]="visible() ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+              [attr.aria-pressed]="visible()"
+            >
+              {{ visible() ? 'Ocultar' : 'Ver' }}
+            </button>
+          </div>
+          @if (claveCampo.touched && claveCampo.invalid) {
+          <small class="validacion"
+            >{{ modo() === 'registro' ? 'Usa al menos 6 caracteres.' : 'Ingresa tu contraseña.' }}</small
+          >
+          } @if (modo() === 'login') {
+          <a class="olvido" [routerLink]="enlace('/recuperar')">¿Olvidaste tu contraseña?</a> } } @if (modo() ===
+          'registro') {
+          <label [for]="modo() + '-confirmacion'">Confirma tu contraseña</label>
+          <input
+            [id]="modo() + '-confirmacion'"
+            name="confirmacion"
+            [type]="visible() ? 'text' : 'password'"
+            [(ngModel)]="confirmacion"
+            required
+            minlength="6"
+            autocomplete="new-password"
+            placeholder="Escríbela una vez más"
+            [disabled]="ocupado()"
+          />
+          }
+          <button
+            type="submit"
+            class="principal"
+            [disabled]="ocupado() || !auth.configurado"
+            [attr.aria-busy]="ocupado()"
+          >
+            {{ ocupado() ? 'Un momento…' : modo() === 'registro' ? 'Crear mi cuenta' : modo() === 'recuperar' ? 'Enviar
+            enlace' : 'Iniciar sesión' }}<span aria-hidden="true">→</span>
+          </button>
+        </form>
+        <p class="alternativa">
+          {{ modo() === 'login' ? '¿Primera vez por aquí?' : '¿Ya tienes una cuenta?' }}
+          <a [routerLink]="enlace(modo() === 'login' ? '/registro' : '/login')"
+            >{{ modo() === 'login' ? 'Crea una cuenta' : 'Inicia sesión' }}</a
+          >
+        </p>
+        }
+        <div class="nota">
+          <span aria-hidden="true">◇</span>
+          <p>Tus reportes, en un solo lugar.<br /><strong>Conectados con nuestra ciudad.</strong></p>
+        </div>
+      </div>
+      <footer>UrbanInspect <span>·</span> Reportes urbanos de Quito</footer>
+    </section>
+  </main>
+</ion-content>

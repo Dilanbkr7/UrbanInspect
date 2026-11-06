@@ -8,17 +8,19 @@ import {Incidencia} from '../models/incidencia';
 import {NavegacionComponent} from '../shared/navegacion.component';
 import {TarjetaIncidenciaComponent} from '../shared/tarjeta-incidencia.component';
 import {CONFIG} from '../config/config';
+import {AuthService} from '../services/auth.service';
 
 @Component({standalone:true,selector:'app-inicio',
  imports:[CommonModule,RouterModule,NavegacionComponent,TarjetaIncidenciaComponent,IonContent,IonFooter,IonHeader,IonTitle,IonToolbar],
  template:`
  <ion-header class="ion-no-border"><ion-toolbar><ion-title>UrbanInspect</ion-title></ion-toolbar></ion-header>
  <ion-content><div class="contenedor">
-  <div class="cabecera"><div class="mini">OPERACIONES DE CAMPO · QUITO</div>
+  <div class="saludo"><span>Hola, {{auth.usuario()?.displayName || 'bienvenido'}}</span><a routerLink="/cuenta">Mi cuenta ↗</a></div>
+  <div class="cabecera"><div class="mini">QUITO · CUIDAMOS NUESTRA CIUDAD</div>
     <h1>Panel de inspección</h1><p>Registro y seguimiento de infraestructura urbana.</p>
     <a class="crear" routerLink="/nuevo">＋ Registrar incidencia</a></div>
-  <div class="panel"><h2>Indicadores de la primera página remota</h2>
-    <p class="ayuda">Muestra los últimos {{tamano}} registros solicitados al servicio, no el total histórico.</p>
+  <div class="panel"><h2>El pulso de tu ciudad</h2>
+    <p class="ayuda">Resumen de los últimos {{tamano}} reportes consultados.</p>
     <div class="kpis"><div><b>{{recientes.length}}</b><span>Consultadas</span></div>
     <div><b>{{contar('pendiente')}}</b><span>Pendientes</span></div>
     <div><b>{{contar('en_proceso')}}</b><span>En proceso</span></div>
@@ -33,6 +35,7 @@ import {CONFIG} from '../config/config';
  </div></ion-content><ion-footer class="ion-no-border"><app-navegacion></app-navegacion></ion-footer>
  `,styleUrls:['./inicio.page.scss']})
 export class InicioPage {
+ readonly auth = inject(AuthService);
  private readonly cdr = inject(ChangeDetectorRef);
  recientes:Incidencia[]=[];cargando=false;error='';tamano=CONFIG.pageSize;
  constructor(public seguir:SeguimientoService,private api:IncidenciasService){}
